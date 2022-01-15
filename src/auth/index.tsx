@@ -7,7 +7,7 @@ export const AuthContext = createContext<IContext>({} as IContext)
 
 export const AuthProvider = ({children}: IAuthProvider) => {
     const [User, setUser] = useState<IUser | null>()
-    const [Token, setToken] = useState<IToken | null>()
+    const [Token, setToken] = useState<IToken | null | string>()
 
     useEffect(() => {
         const user = getUserLocalStorage();

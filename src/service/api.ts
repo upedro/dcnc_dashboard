@@ -1,23 +1,22 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { getTokenLocalStorage } from "../auth/utils";
 
 export const api = axios.create({
-    baseURL: 'https://dcnc.herokuapp.com/api/',
+    baseURL: 'http://localhost:5000/api/',
     timeout: 60000,
     headers: { 
         'Content-Type': 'application/json',
         'Accept':'*/*',
-         'Access-Control-Allow-Origin': 'https://dcnc-dashboard.netlify.app/',
-          'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
-           'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }
+        'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }
 })
 
 
 
 api.interceptors.request.use(
-    (config) => {
+    (config:AxiosRequestConfig) => {
         const token = getTokenLocalStorage();
-        config.headers.Authorization = token as string
+        config.headers = {Authorization : token as string}
         return config
     },
     (error) => {

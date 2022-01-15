@@ -14,6 +14,7 @@ import { number } from "yup";
 import { api } from "../../service/api";
 import { ArrowUpOutlined, ArrowDownOutlined,DatabaseOutlined,DownloadOutlined,VerticalAlignTopOutlined, AndroidOutlined,CloseOutlined, CheckOutlined, VerticalAlignBottomOutlined, BugOutlined, LoadingOutlined } from '@ant-design/icons';
 import {Container,CardWrapper} from './style'
+import { IMetrics } from "../Types";
 
 const { Header, Sider, Content, Footer } = Layout;
 const { Search } = Input;
@@ -38,13 +39,13 @@ const columns = [
       title: 'Upload Concluido',
       dataIndex: 'upload_concluido',
       key: 'upload_concluido',
-      render: upload_concluido => (upload_concluido ? 'Sim' : 'Não')
+      render: (upload_concluido:any) => (upload_concluido ? 'Sim' : 'Não')
     },
     {
       title: 'Erro no cadastro',
       dataIndex: 'erro_cadastro',
       key: 'erro_cadastro',
-      render: erro_cadastro => (erro_cadastro ? 'Sim' : 'Não')
+      render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
     },
     {
       title: 'Resposavel',
@@ -59,8 +60,9 @@ export default function Dashboard() {
     const [collapsed, setcollapsed] = useState(false)
     const [laudos, setLaudos] = useState()
     const [totalLaudos, settotalLaudos] = useState()
-    const [metrics, setmetrics] = useState({})
+    const [metrics, setmetrics] = useState({}as IMetrics)
     const [SearchLaudo, setSearchLaudo] = useState({})
+
 
 
     function toggle() {

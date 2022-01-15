@@ -4,7 +4,7 @@ import './App.css'
 import Home from './pages/Home/Home'
 import Dashboard from './pages/Dashboard'
 import {Login} from './components/Login'
-import history from './context/History';
+
 
 import { AuthProvider } from './auth'
 import { ProtectedLayout } from './components/ProtectedLayout'
@@ -16,14 +16,14 @@ function App() {
 
   return (
     <AuthProvider>
-    <Router history={history}>
+    <Router>
       <Routes>
-        <Route exact  path='/' element={
+        <Route  path='/' element={
           <ProtectedLayout>
             <Dashboard/>
           </ProtectedLayout>
         }></Route>
-        <Route exact  path='/home' element={
+        <Route  path='/home' element={
           <ProtectedLayout>
             <Home/>
           </ProtectedLayout>

@@ -11,6 +11,8 @@ export interface IContext extends IUser {
     login: (email:string,password:string) => Promise<void>;
     getUser: () => Promise<void>;
     logout: () => void;
+    email?: any
+    
 }
 
 export interface IAuthProvider {

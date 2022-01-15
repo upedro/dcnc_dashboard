@@ -6,7 +6,7 @@ import {CardWrapper} from './style'
 
 
 export default function CardStatistic(props:any) {
-  const Tab = props => <div>{props.children}</div>
+  const Icon = (props:any) => <div>{props.children}</div>
     return (
         <CardWrapper >
  
@@ -16,7 +16,7 @@ export default function CardStatistic(props:any) {
                 value={props.value}
                 precision={props.precision}
                 valueStyle={{ color: `${props.color}`}}
-                prefix={<Tab>{props.icon}</Tab>}
+                prefix={<Icon>{props.icon}</Icon>}
                 suffix={props.suffix}
               />
             </Card>
