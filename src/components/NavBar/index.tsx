@@ -16,7 +16,8 @@ export default function Header(props:any) {
             <NavBar backArrow={false}>
                 <List>
                     <List.Item
-                        prefix={<Avatar src={props.avatar} />}
+                        prefix={<Avatar src={props.avatar} style={{ borderRadius: 32 }}  />}
+                        description={'DCNC Advogados'}
                         
                     >
                         {props.title ? props.title.split('@')[0] : ''}

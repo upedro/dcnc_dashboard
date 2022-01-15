@@ -3,6 +3,7 @@ import { CapsuleTabs } from 'antd-mobile'
 import Dashboard from '../Dashboard'
 import Header from '../../components/NavBar'
 import { useAuth } from '../../auth/useAuth'
+import './index.css'
 
 export default function Home() {
 
@@ -13,8 +14,8 @@ export default function Home() {
     return (
         <>
         <Header title={auth.email} avatar={auth?.avatar}/>
-        <CapsuleTabs>
-          <CapsuleTabs.Tab title='Robô laudos' key='fruits'>
+        <CapsuleTabs >
+          <CapsuleTabs.Tab className='tabs' title='Robô: Laudos de monitoramento' key='fruits'>
             <Dashboard/>
           </CapsuleTabs.Tab>
           <CapsuleTabs.Tab title='Robô vazio' key='vegetables'>

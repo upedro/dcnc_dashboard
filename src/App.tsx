@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home/Home'
-import {Login} from './components/Login'
+import LoginScreen from './pages/Login'
 
 
 import { AuthProvider } from './auth'
@@ -22,7 +22,7 @@ function App() {
             <Home/>
           </ProtectedLayout>
         }></Route>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/login' element={<LoginScreen/>}></Route>
         </Routes>
     </Router>
     </AuthProvider>

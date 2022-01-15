@@ -38,20 +38,16 @@ export const Login = () => {
         <Row
         justify="center"
         align="middle"
-        style={{
-            height: '100vh'
-        }}
+
         >
     
-    
-
         <Col
-         span={12}
+         span={24}
         >
             <Form
                 name='basic'
-                labelCol={{span:8}}
-                wrapperCol={{span:16}}
+                labelCol={{span:24}}
+                wrapperCol={{span:24}}
                 onFinish={onFinish}
             >
                 <Form.Item
@@ -63,18 +59,19 @@ export const Login = () => {
                 </Form.Item>
 
                 <Form.Item
-                label='Password'
+                label='Senha'
                 name='password'
                 >
                     <Input.Password/>
 
                 </Form.Item>
 
-                <Form.Item wrapperCol={{offset:8, span:16}}> 
-                    <Button type="primary" htmlType="submit">
-                        Login
+                <Form.Item  wrapperCol={{span:24 , flex:'auto'}}> 
+                    <Button block type="primary" danger htmlType="submit">
+                        Entrar
                     </Button>
                 </Form.Item>
+
             </Form>
         </Col>
         </Row>
