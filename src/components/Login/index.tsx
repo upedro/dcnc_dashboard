@@ -1,13 +1,18 @@
 import { Button, Col, Form, Input, message, Row } from "antd"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../auth/useAuth"
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+
 
 
 
 export const Login = () => {
     const auth = useAuth()
     const navigate = useNavigate()
+    const [loading, setloading] = useState(false)
 
 
     
@@ -19,15 +24,19 @@ export const Login = () => {
        
     }, [auth])
     
+    const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />
 
     async function onFinish(values:{email:string,password:string}) {
+        setloading(!loading)
         try {
            await auth.login(values.email,values.password)
+           setloading(!loading)
            console.log('aqui')
            navigate('/')        
 
            
         } catch (error) {
+            setloading(!loading)
             console.log(error)
             message.error('Invalid email or passoword')
         }
@@ -68,8 +77,9 @@ export const Login = () => {
 
                 <Form.Item  wrapperCol={{span:24 , flex:'auto'}}> 
                     <Button block type="primary" danger htmlType="submit">
-                        Entrar
+                        Entrar {loading ? <Spin tip size="small" indicator={antIcon} /> : ''}
                     </Button>
+                    
                 </Form.Item>
 
             </Form>
