@@ -1,4 +1,5 @@
 import { Button, Col, Form, Input, message, Row } from "antd"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../auth/useAuth"
 import history from "../../context/History"
@@ -8,10 +9,15 @@ export const Login = () => {
     const auth = useAuth()
     const navigate = useNavigate()
 
-    if (auth) {
-        navigate('/')
-    }
+
     
+    useEffect(() => {
+        if (auth.email) {
+            console.log('home',auth)
+            navigate('/')
+        }
+       
+    }, [auth])
     
 
     async function onFinish(values:{email:string,password:string}) {

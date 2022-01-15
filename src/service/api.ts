@@ -4,14 +4,20 @@ import { getTokenLocalStorage } from "../auth/utils";
 export const api = axios.create({
     baseURL: 'https://dcnc.herokuapp.com/api/',
     timeout: 60000,
-    headers: { 'Content-Type': 'application/json','Accept':'*/*', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }
+    headers: { 
+        'Content-Type': 'application/json',
+        'Accept':'*/*',
+         'Access-Control-Allow-Origin': 'https://dcnc.herokuapp.com/',
+          'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
+           'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }
 })
+
+
 
 api.interceptors.request.use(
     (config) => {
         const token = getTokenLocalStorage();
         config.headers.Authorization = token as string
-
         return config
     },
     (error) => {

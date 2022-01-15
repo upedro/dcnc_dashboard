@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 import LoginOld from './pages/Login'
 import {Login} from './components/Login'
 import history from './context/History';
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route exact  path='/' element={
           <ProtectedLayout>
-            <Home/>
+            <Dashboard/>
           </ProtectedLayout>
         }></Route>
           <Route path='/login' element={<Login/>}></Route>
