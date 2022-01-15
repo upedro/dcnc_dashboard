@@ -9,12 +9,14 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import CardStatistic from "../../components/Cards";
-import Tabela from "../Tabela";
+import Tabela from "../../components/Tabela";
 import { number } from "yup";
 import { api } from "../../service/api";
 import { ArrowUpOutlined, ArrowDownOutlined,DatabaseOutlined,DownloadOutlined,VerticalAlignTopOutlined, AndroidOutlined,CloseOutlined, CheckOutlined, VerticalAlignBottomOutlined, BugOutlined, LoadingOutlined } from '@ant-design/icons';
 import {Container,CardWrapper} from './style'
 import { IMetrics } from "../Types";
+import { Button } from "antd-mobile";
+import { useAuth } from "../../auth/useAuth";
 
 const { Header, Sider, Content, Footer } = Layout;
 const { Search } = Input;
@@ -63,7 +65,11 @@ export default function Dashboard() {
     const [metrics, setmetrics] = useState({}as IMetrics)
     const [SearchLaudo, setSearchLaudo] = useState({})
 
+    const auth = useAuth()
 
+    function logout() {
+      auth.logout()
+    }
 
     function toggle() {
         setcollapsed(!collapsed)
@@ -74,7 +80,6 @@ export default function Dashboard() {
 
         try {
             const response = await api.get(`/laudo_benner/?robo_id=${robo_id}${dossie ? getDossie : ''}`)
-            console.log(response.data)
             setLaudos(response.data.laudos)
             settotalLaudos(response.data.total)
             const metrics = await api.get(`/laudo_benner/metrics`)
@@ -96,8 +101,6 @@ export default function Dashboard() {
     }, [])
 
     return (
-
-      
 
         <Layout className="site-layout">
     
@@ -173,7 +176,13 @@ export default function Dashboard() {
             <Tabela dataSource={laudos} columns={columns} />
             
           </Content>
-          <Footer>footer</Footer>
+          <Footer style={{display: 'flex' , justifyContent:'center'}}>
+
+            <Button style={{maxWidth:'40%'}} block color='danger' size='middle' fill='outline' onClick={logout}>
+              Sair
+            </Button>
+
+          </Footer>
           
         </Layout>
         

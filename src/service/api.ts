@@ -6,7 +6,7 @@ export const api = axios.create({
     timeout: 60000,
     headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://dcnc-dashboard.netlify.app',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/',
         'Accept':'*/*',
         'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }

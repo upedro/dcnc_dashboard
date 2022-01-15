@@ -1,4 +1,5 @@
 import { Button, Space, Table } from 'antd';
+import { Divider } from 'antd-mobile';
 import React, { useState } from 'react'
 import {Wrapper} from './style'
 
@@ -35,9 +36,9 @@ export default function Tabela(props:any) {
     return (
         <>
         <Wrapper>
-            <Space>
+            <Divider>
             <Table columns={props.columns} dataSource={props.dataSource} />
-            </Space>
+            </Divider>    
         </Wrapper>
 
         </>

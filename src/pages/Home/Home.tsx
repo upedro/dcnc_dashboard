@@ -1,33 +1,29 @@
 import React from 'react'
 import { CapsuleTabs } from 'antd-mobile'
+import Dashboard from '../Dashboard'
+import Header from '../../components/NavBar'
+import { useAuth } from '../../auth/useAuth'
 
 export default function Home() {
 
+    const auth = useAuth()
+
+    console.log('Cheguei na tela home')
 
     return (
-        <div>
+        <>
+        <Header title={auth.email} avatar={auth?.avatar}/>
         <CapsuleTabs>
-          <CapsuleTabs.Tab title='水果' key='fruits'>
-            菠萝
+          <CapsuleTabs.Tab title='Robô laudos' key='fruits'>
+            <Dashboard/>
           </CapsuleTabs.Tab>
-          <CapsuleTabs.Tab title='蔬菜' key='vegetables'>
-            西红柿
+          <CapsuleTabs.Tab title='Robô vazio' key='vegetables'>
+            Aguardando Robô
           </CapsuleTabs.Tab>
-          <CapsuleTabs.Tab title='动物' key='animals'>
-            蚂蚁
+          <CapsuleTabs.Tab title='Robô vazio' key='animals'>
+            Aguardando Robô
           </CapsuleTabs.Tab>
         </CapsuleTabs>
-        <div>
-
-        </div>
-
-        <CapsuleTabs>
-          <CapsuleTabs.Tab title='水果' key='fruits' />
-          <CapsuleTabs.Tab title='蔬菜' key='vegetables' />
-          <CapsuleTabs.Tab title='动物' key='animals' />
-        </CapsuleTabs>
-
-        
-        </div>
+       </>
     )
 }

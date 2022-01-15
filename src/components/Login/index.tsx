@@ -13,8 +13,8 @@ export const Login = () => {
     
     useEffect(() => {
         if (auth.email) {
-            console.log('home',auth)
-            navigate('/')
+            console.log('Login auth effect',auth)
+            navigate(-1)
         }
        
     }, [auth])

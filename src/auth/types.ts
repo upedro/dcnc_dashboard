@@ -12,6 +12,7 @@ export interface IContext extends IUser {
     getUser: () => Promise<void>;
     logout: () => void;
     email?: any
+    avatar?: any
     
 }
 

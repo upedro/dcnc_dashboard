@@ -26,14 +26,14 @@ export const AuthProvider = ({children}: IAuthProvider) => {
     async function login(email:string,password:string) {
         console.log('aqui1')
         const response = await LoginRequest(email,password)
-        const payload = { token: response?.token, user: response?.user}
-
-        setUser(payload.user)
-        setToken(payload.token)
-        setUserLocalStorage(payload.user)
-        setTokenLocalStorage(payload.token)
         if(response){
-            console.log('response')
+            const payload = { token: response?.token, user: response?.user}
+
+            setUser(payload.user)
+            setToken(payload.token)
+            setUserLocalStorage(payload.user)
+            setTokenLocalStorage(payload.token)
+            
         }
 
 

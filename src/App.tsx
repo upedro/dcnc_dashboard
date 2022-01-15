@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home/Home'
-import Dashboard from './pages/Dashboard'
 import {Login} from './components/Login'
 
 
@@ -19,11 +18,6 @@ function App() {
     <Router>
       <Routes>
         <Route  path='/' element={
-          <ProtectedLayout>
-            <Dashboard/>
-          </ProtectedLayout>
-        }></Route>
-        <Route  path='/home' element={
           <ProtectedLayout>
             <Home/>
           </ProtectedLayout>

@@ -1,3 +1,4 @@
+import { message } from "antd";
 import {api} from "../service/api";
 import { IToken, IUser } from "./types";
 
@@ -11,6 +12,7 @@ export async function LoginRequest (email:string, password:string) {
         return {token:request.data.token , user: auth.data}
 
     } catch (error) {
+        message.error('Erro no login')
         return null
     }
 }
