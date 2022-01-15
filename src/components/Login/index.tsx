@@ -14,15 +14,11 @@ export const Login = () => {
     const navigate = useNavigate()
     const [loading, setloading] = useState(false)
 
+    if (auth.email) {
+        console.log('Login auth effect',auth)
+        navigate('/')
+    }
 
-    
-    useEffect(() => {
-        if (auth.email) {
-            console.log('Login auth effect',auth)
-            navigate(-1)
-        }
-       
-    }, [auth])
     
     const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />
 
@@ -77,7 +73,7 @@ export const Login = () => {
 
                 <Form.Item  wrapperCol={{span:24 , flex:'auto'}}> 
                     <Button block type="primary" danger htmlType="submit">
-                        Entrar {loading ? <Spin wrapperClassName={'ant-btn'} tip size="small" indicator={antIcon} /> : ''}
+                        Entrar {loading ? <Spin tip size="small" indicator={antIcon} /> : ''}
                     </Button>
                     
                 </Form.Item>
