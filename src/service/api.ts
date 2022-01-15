@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { getTokenLocalStorage } from "../auth/utils";
 
 export const api = axios.create({
-    baseURL: 'http://localhost:5000/api/',
+    baseURL: 'https://dcnc.herokuapp.com/api/',
     timeout: 60000,
     headers: { 
         'Content-Type': 'application/json',
