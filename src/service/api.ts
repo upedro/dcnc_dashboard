@@ -7,7 +7,7 @@ export const api = axios.create({
     headers: { 
         'Content-Type': 'application/json',
         'Accept':'*/*',
-         'Access-Control-Allow-Origin': 'https://dcnc.herokuapp.com/',
+         'Access-Control-Allow-Origin': 'https://dcnc-dashboard.netlify.app/',
           'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
            'Access-Control-Allow-Headers' : 'Origin, Content-Type, X-Auth-Token' }
 })
