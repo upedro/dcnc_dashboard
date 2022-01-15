@@ -12,7 +12,7 @@ export async function LoginRequest (email:string, password:string) {
         return {token:request.data.token , user: auth.data}
 
     } catch (error) {
-        message.error('Erro no login')
+        message.error('Erro na autenticação: Confira suas credenciais.')
         return null
     }
 }

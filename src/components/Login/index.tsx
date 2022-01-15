@@ -77,7 +77,7 @@ export const Login = () => {
 
                 <Form.Item  wrapperCol={{span:24 , flex:'auto'}}> 
                     <Button block type="primary" danger htmlType="submit">
-                        Entrar {loading ? <Spin tip size="small" indicator={antIcon} /> : ''}
+                        Entrar {loading ? <Spin wrapperClassName={'ant-btn'} tip size="small" indicator={antIcon} /> : ''}
                     </Button>
                     
                 </Form.Item>
