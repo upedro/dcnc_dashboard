@@ -115,56 +115,58 @@ export default function Dashboard() {
                     <CardWrapper>
                     
                     <CardStatistic
-                    title='Total'
+                    title='Total salvo no banco'
                     value={metrics?.totalGeral || 0}
-                    suffix='Laudos'
-                    color='green'
+                    suffix='Processos'
+                    color='black'
                     precision={0}
                     icon={<DatabaseOutlined />}
   
                     />
 
-                    <CardStatistic
-                    title='Aguardando processamento'
-                    value={metrics?.totalUploadFalse || 0}
-                    suffix='Laudos'
-                    icon={<LoadingOutlined />}
-                    color='green'
-                    precision={0}
-                    />
+
 
                     <CardStatistic
-                    title='Uploads concluidos no CPJ'
+                    title='Laudos inseridos no CPJ'
                     value={metrics?.totalUploadTrue || 0}
-                    suffix='Uploads'
+                    suffix='Processos'
                     icon={<VerticalAlignTopOutlined />}
-                    color='green'
+                    color='#34ebe5'
                     precision={0}
                     />
 
 
                     <CardStatistic
-                    title='Downloads de laudos realizados'
+                    title='Laudos baixados no Benner'
                     value={metrics?.baixadoBennerSucesso || 0}
                     suffix='Downloads'
                     icon={<DownloadOutlined />}
                     color='green'
                     precision={0}
                     />           
+
+                    <CardStatistic
+                    title='Aguardando processamento'
+                    value={metrics?.totalUploadFalse || 0}
+                    suffix='Processos'
+                    icon={<LoadingOutlined />}
+                    color='blue'
+                    precision={0}
+                    />
                     
                     <CardStatistic
-                    title='Erros durante o processamento'
+                    title='Falhas no processamento'
                     value={metrics?.erroUploadTrue || 0}
-                    suffix='Laudos'
+                    suffix='Falhas'
                     icon={<BugOutlined />}
-                    color='red'
+                    color='#eb9234'
                     precision={0}
                     />
 
                     <CardStatistic
                     title='Erros durante o download'
                     value={metrics?.baixadoBennerFail || 0}
-                    suffix='Laudos'
+                    suffix='Erros'
                     icon={<VerticalAlignBottomOutlined />}
                     color='red'
                     precision={0}
