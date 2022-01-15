@@ -12,27 +12,31 @@ import { LoadingOutlined } from '@ant-design/icons';
 export const Login = () => {
     const auth = useAuth()
     const navigate = useNavigate()
-    const [loading, setloading] = useState(false)
+    // const [loading, setloading] = useState(false)
+    let loading = false
 
-    if (auth.email) {
-        console.log('Login auth effect',auth)
-        navigate('/')
-    }
+
+    useEffect(() => {
+        if (auth.email) {
+            console.log('Login auth effect',auth)
+            navigate('/')
+        }
+    }, [auth])
 
     
     const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />
 
     async function onFinish(values:{email:string,password:string}) {
-        setloading(!loading)
+        loading = !loading
         try {
            await auth.login(values.email,values.password)
-           setloading(!loading)
+           loading = !loading
            console.log('aqui')
            navigate('/')        
 
            
         } catch (error) {
-            setloading(!loading)
+            loading = !loading
             console.log(error)
             message.error('Invalid email or passoword')
         }
