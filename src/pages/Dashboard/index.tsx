@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './index.css'
-import { Col, Divider, Input, Layout, Menu, Row, Statistic } from 'antd';
+import { Col, Divider, Input, Layout, Menu, Row, Statistic, Typography } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -19,6 +19,7 @@ import { Button } from "antd-mobile";
 import { useAuth } from "../../auth/useAuth";
 
 const { Header, Sider, Content, Footer } = Layout;
+const { Text} = Typography;
 const { Search } = Input;
 
 const columns = [
@@ -103,7 +104,8 @@ export default function Dashboard() {
     return (
 
         <Layout className="site-layout">
-    
+          <Text keyboard>Robô : Laudos de monitoramento - Benner para CPJ </Text>
+                    
           <Content
             className="site-layout-background"
             style={{
