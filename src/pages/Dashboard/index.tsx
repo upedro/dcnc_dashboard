@@ -12,7 +12,10 @@ import CardStatistic from "../../components/Cards";
 import Tabela from "../../components/Tabela";
 import { number } from "yup";
 import { api } from "../../service/api";
-import { ArrowUpOutlined, ArrowDownOutlined,DatabaseOutlined,DownloadOutlined,VerticalAlignTopOutlined, AndroidOutlined,CloseOutlined, CheckOutlined, VerticalAlignBottomOutlined, BugOutlined, LoadingOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, ArrowDownOutlined,DatabaseOutlined,DownloadOutlined,
+  VerticalAlignTopOutlined, AndroidOutlined,CloseOutlined, CheckOutlined,
+   VerticalAlignBottomOutlined, BugOutlined, LoadingOutlined, DollarCircleOutlined,
+   ClockCircleOutlined ,HourglassOutlined } from '@ant-design/icons';
 import {Container,CardWrapper} from './style'
 import { IMetrics } from "../Types";
 import { Button } from "antd-mobile";
@@ -23,11 +26,7 @@ const { Text} = Typography;
 const { Search } = Input;
 
 const columns = [
-    {
-        title: 'Código',
-        dataIndex: 'cod',
-        key: 'cod',
-    },
+
     {
       title: 'Dossie',
       dataIndex: 'dossie',
@@ -36,25 +35,52 @@ const columns = [
     {
       title: 'Nº processo',
       dataIndex: 'n_processo',
-      key: 'n_processo',
+      key: 'dossie',
     },
     {
-      title: 'Upload Concluido',
+      title: 'Upload CPJ Concluido',
       dataIndex: 'upload_concluido',
-      key: 'upload_concluido',
+      key: 'dossie',
       render: (upload_concluido:any) => (upload_concluido ? 'Sim' : 'Não')
+    },
+    {
+      title: 'Downloado benner concluido',
+      dataIndex: 'concluido',
+      key: 'dossie',
+      render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
+    },
+    {
+      title: 'Nº de laudos baixados',
+      dataIndex: 'documentos',
+      key: 'dossie',
+      render: (documentos:any) => (typeof documentos ? documentos.length : '' ),
     },
     {
       title: 'Erro no cadastro',
       dataIndex: 'erro_cadastro',
-      key: 'erro_cadastro',
+      key: 'dossie',
       render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
     },
     {
       title: 'Resposavel',
       dataIndex: 'resposavel',
-      key: 'resposavel',
+      key: 'dossie',
     },
+    {
+      title: 'Id robô',
+      dataIndex: 'robo_id',
+      key: 'dossie',
+    },
+    {
+      title: 'Id laudo no banco',
+      dataIndex: 'laudo_id',
+      key: 'dossie',
+    },
+    {
+      title: 'Código',
+      dataIndex: 'cod',
+      key: 'dossie',
+  },
   ];
 
 
@@ -110,8 +136,9 @@ export default function Dashboard() {
             className="site-layout-background"
             style={{
               margin: '24px 16px',
-              padding: 24,
+              padding: '0.6rem',
               minHeight: '100vh',
+              background:'#f0f0f0'
             }}>
                
                     <CardWrapper>
@@ -131,9 +158,9 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Laudos inseridos no CPJ'
                     value={metrics?.totalUploadTrue || 0}
-                    suffix='Processos'
+                    suffix='Processos inseridos'
                     icon={<VerticalAlignTopOutlined />}
-                    color='#34ebe5'
+                    color='green'
                     precision={0}
                     />
 
@@ -141,7 +168,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Laudos baixados no Benner'
                     value={metrics?.baixadoBennerSucesso || 0}
-                    suffix='Downloads'
+                    suffix='Downloads/Benner'
                     icon={<DownloadOutlined />}
                     color='green'
                     precision={0}
@@ -150,14 +177,14 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Aguardando processamento'
                     value={metrics?.totalUploadFalse || 0}
-                    suffix='Processos'
-                    icon={<LoadingOutlined />}
+                    suffix='Processos na fila'
+                    icon={<HourglassOutlined />}
                     color='blue'
                     precision={0}
                     />
                     
                     <CardStatistic
-                    title='Falhas no processamento'
+                    title='Falhas durante o processamento'
                     value={metrics?.erroUploadTrue || 0}
                     suffix='Falhas'
                     icon={<BugOutlined />}
@@ -166,16 +193,35 @@ export default function Dashboard() {
                     />
 
                     <CardStatistic
-                    title='Erros durante o download'
+                    title='Erros identificados durante o download'
                     value={metrics?.baixadoBennerFail || 0}
                     suffix='Erros'
                     icon={<VerticalAlignBottomOutlined />}
                     color='red'
                     precision={0}
                     />
+
+                    <CardStatistic
+                    title='Tempo de execução robô'
+                    value={60}
+                    suffix='Horas trabalhadas'
+                    icon={<ClockCircleOutlined />}
+                    color='#38614c'
+                    precision={0}
+                    />
+
+                    <CardStatistic
+                    title='Economia de mão de obra'
+                    suffix='Reais'
+                    value={4650}
+                    icon={<DollarCircleOutlined />}
+                    color='#38614c'
+                    precision={2}
+                    />
+
                   </CardWrapper>
             <Divider/>
-            <Search placeholder="Busca por dossie" onSearch={searchDossie} enterButton />
+            <Search bordered  size="large" className="polimorfism" addonBefore="Dossiê" placeholder="Busca por dossie" onSearch={searchDossie} enterButton />
 
             <Tabela dataSource={laudos} columns={columns} />
             

@@ -4,6 +4,7 @@ import Dashboard from '../Dashboard'
 import Header from '../../components/NavBar'
 import { useAuth } from '../../auth/useAuth'
 import './index.css'
+import { Container } from './style'
 
 export default function Home() {
 
@@ -14,17 +15,22 @@ export default function Home() {
     return (
         <>
         <Header title={auth.email} avatar={auth?.avatar}/>
-        <CapsuleTabs >
-          <CapsuleTabs.Tab className='tabs' title='Robô: Laudos de monitoramento' key='fruits'>
-            <Dashboard/>
-          </CapsuleTabs.Tab>
-          <CapsuleTabs.Tab title='Robô vazio' key='vegetables'>
-            Aguardando Robô
-          </CapsuleTabs.Tab>
-          <CapsuleTabs.Tab title='Robô vazio' key='animals'>
-            Aguardando Robô
-          </CapsuleTabs.Tab>
-        </CapsuleTabs>
+        <Container>
+          <CapsuleTabs >
+            <CapsuleTabs.Tab className='tabs' title='Robô: Laudos de monitoramento' key='fruits'>
+              <Dashboard/>
+            </CapsuleTabs.Tab>
+            <CapsuleTabs.Tab className='tabs' title='Robô vazio' key='vegetables'>
+              Aguardando Robô
+            </CapsuleTabs.Tab>
+            <CapsuleTabs.Tab className='tabs' title='Robô vazio' key='animals'>
+              Aguardando Robô
+            </CapsuleTabs.Tab>
+            <CapsuleTabs.Tab className='tabs' title='Robô vazio' key='animals2'>
+              Aguardando Robô
+            </CapsuleTabs.Tab>
+          </CapsuleTabs>
+        </Container>
        </>
     )
 }

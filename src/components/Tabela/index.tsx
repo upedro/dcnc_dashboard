@@ -37,7 +37,7 @@ export default function Tabela(props:any) {
         <>
         <Wrapper>
             <Divider>
-            <Table columns={props.columns} dataSource={props.dataSource} />
+            <Table size={'large'} bordered scroll={{x:true}} columns={props.columns} dataSource={props.dataSource} />
             </Divider>    
         </Wrapper>
 
