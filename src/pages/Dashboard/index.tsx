@@ -158,7 +158,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Laudos inseridos no CPJ'
                     value={metrics?.totalUploadTrue || 0}
-                    suffix='Processos inseridos'
+                    suffix='Inseridos no CPJ'
                     icon={<VerticalAlignTopOutlined />}
                     color='green'
                     precision={0}
@@ -168,7 +168,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Laudos baixados no Benner'
                     value={metrics?.baixadoBennerSucesso || 0}
-                    suffix='Downloads/Benner'
+                    suffix='Downloads'
                     icon={<DownloadOutlined />}
                     color='green'
                     precision={0}
@@ -191,7 +191,7 @@ export default function Dashboard() {
                     color='#eb9234'
                     precision={0}
                     />
-
+{/* 
                     <CardStatistic
                     title='Erros identificados durante o download'
                     value={metrics?.baixadoBennerFail || 0}
@@ -199,11 +199,11 @@ export default function Dashboard() {
                     icon={<VerticalAlignBottomOutlined />}
                     color='red'
                     precision={0}
-                    />
+                    /> */}
 
                     <CardStatistic
                     title='Tempo de execução robô'
-                    value={60}
+                    value={0}
                     suffix='Horas trabalhadas'
                     icon={<ClockCircleOutlined />}
                     color='#38614c'
@@ -213,7 +213,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Economia de mão de obra'
                     suffix='Reais'
-                    value={4650}
+                    value={0}
                     icon={<DollarCircleOutlined />}
                     color='#38614c'
                     precision={2}
