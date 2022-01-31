@@ -203,7 +203,7 @@ export default function Dashboard() {
 
                     <CardStatistic
                     title='Tempo de execução robô'
-                    value={0}
+                    value={(metrics?.horasTrabalho[0]?.horasTrabalho)*0.0166667 || 0}
                     suffix='Horas trabalhadas'
                     icon={<ClockCircleOutlined />}
                     color='#38614c'
