@@ -5,5 +5,5 @@ export interface IMetrics {
     baixadoBennerSucesso: number
     erroUploadTrue: number
     baixadoBennerFail: number
-    horasTrabalho: [{horasTrabalho:number}]
+    horasTrabalho: number
 }
