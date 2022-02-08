@@ -7,3 +7,12 @@ export interface IMetrics {
     baixadoBennerFail: number
     horasTrabalho: number
 }
+
+export interface IIncidentesMetrics {
+    totalConcluidoFalse: number;
+    totalConcluidoTrue: number
+    totalErroCadastroTrue: number
+    totalJaPossuiCadastroFalse: number
+    totalEncontrouDuplicidadeTrue: number
+    horasTrabalho: number
+}
