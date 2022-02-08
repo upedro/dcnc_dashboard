@@ -160,8 +160,8 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Total não concluido'
                     value={metrics?.totalConcluidoFalse || 0}
-                    suffix='Processos'
-                    color='black'
+                    suffix='Não cadastrados'
+                    color='red'
                     precision={0}
                     icon={<DatabaseOutlined />}
   
@@ -204,23 +204,6 @@ export default function Dashboard() {
                     precision={0}
                     /> */}
 
-                    {/* <CardStatistic
-                    title='Tempo de execução robô'
-                    value={(metrics?.horasTrabalho)*0.0166667 || 0}
-                    suffix='Horas trabalhadas'
-                    icon={<ClockCircleOutlined />}
-                    color='#38614c'
-                    precision={0}
-                    />
-
-                    <CardStatistic
-                    title='Economia de mão de obra'
-                    suffix='Reais'
-                    value={((metrics?.horasTrabalho)*0.0166667)*12.5 || 0}
-                    icon={<DollarCircleOutlined />}
-                    color='#38614c'
-                    precision={2}
-                    /> */}
 
 <CardStatistic
                     title='Tempo de execução robô'
