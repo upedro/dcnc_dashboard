@@ -10,6 +10,11 @@ export const NavWrapper = styled.div`
     align-items: center;
     padding: 1rem;
     justify-content: space-between;
+    @media (max-width: 500px)
+    {
+        flex-direction: column;
+      
+    }
 `
 
 
