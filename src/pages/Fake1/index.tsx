@@ -191,7 +191,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Economia de mão de obra'
                     suffix='Reais'
-                    value={(1170*0.0166667)*192.5 || 0}
+                    value={(1170*0.0166667)*82.5 || 0}
                     icon={<DollarCircleOutlined />}
                     color='#38614c'
                     precision={2}
