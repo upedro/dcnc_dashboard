@@ -135,7 +135,7 @@ export default function Dashboard() {
     return (
 
         <Layout className="site-layout">
-          <Text keyboard>Robô : Cadastro de Incidentes - CPJ </Text>
+          <Text keyboard>Robô : Cadastro de Santander - CPJ </Text>
                     
           <Content
             className="site-layout-background"
