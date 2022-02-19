@@ -17,7 +17,7 @@ import { ArrowUpOutlined, ArrowDownOutlined,DatabaseOutlined,DownloadOutlined,
    VerticalAlignBottomOutlined, BugOutlined, LoadingOutlined, DollarCircleOutlined,
    ClockCircleOutlined ,HourglassOutlined } from '@ant-design/icons';
 import {Container,CardWrapper} from './style'
-import { IMetrics } from "../Types";
+import { IIncidentesMetrics, IMetrics } from "../Types";
 import { Button } from "antd-mobile";
 import { useAuth } from "../../auth/useAuth";
 
@@ -33,27 +33,31 @@ const columns = [
       key: 'dossie',
     },
     {
-      title: 'Nº processo',
-      dataIndex: 'n_processo',
+      title: 'Nº Processo',
+      dataIndex: 'numCNJ',
       key: 'dossie',
     },
     {
-      title: 'Upload CPJ Concluido',
-      dataIndex: 'upload_concluido',
+      title: 'Tipo da SubPasta',
+      dataIndex: 'tipoSubpasta',
       key: 'dossie',
-      render: (upload_concluido:any) => (upload_concluido ? 'Sim' : 'Não')
     },
     {
-      title: 'Downloado benner concluido',
+      title: 'Orgao Julgador',
+      dataIndex: 'OrgaoJulgador',
+      key: 'dossie',
+    },
+    {
+      title: 'Concluido',
       dataIndex: 'concluido',
       key: 'dossie',
-      render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
+      render: (concluido:any) => (concluido ? 'Sim' : 'Não')
     },
     {
-      title: 'Nº de laudos baixados',
-      dataIndex: 'documentos',
+      title: 'Encontrou duplicidade',
+      dataIndex: 'encontrou_duplicidade',
       key: 'dossie',
-      render: (documentos:any) => (typeof documentos ? documentos.length : '' ),
+      render: (encontrou_duplicidade:any) => (encontrou_duplicidade ? 'Sim' : 'Não')
     },
     {
       title: 'Erro no cadastro',
@@ -62,8 +66,19 @@ const columns = [
       render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
     },
     {
-      title: 'Resposavel',
-      dataIndex: 'resposavel',
+      title: 'Já possui cadastro ?',
+      dataIndex: 'ja_possui_cadastro',
+      key: 'dossie',
+      render: (erro_cadastro:any) => (erro_cadastro ? 'Sim' : 'Não')
+    },
+    {
+      title: 'Juizo',
+      dataIndex: 'Juizo',
+      key: 'dossie',
+    },
+    {
+      title: 'ufJuizo',
+      dataIndex: 'ufJuizo',
       key: 'dossie',
     },
     {
@@ -71,16 +86,6 @@ const columns = [
       dataIndex: 'robo_id',
       key: 'dossie',
     },
-    {
-      title: 'Id laudo no banco',
-      dataIndex: 'laudo_id',
-      key: 'dossie',
-    },
-    {
-      title: 'Código',
-      dataIndex: 'cod',
-      key: 'dossie',
-  },
   ];
 
 
@@ -89,7 +94,7 @@ export default function Dashboard() {
     const [collapsed, setcollapsed] = useState(false)
     const [laudos, setLaudos] = useState()
     const [totalLaudos, settotalLaudos] = useState()
-    const [metrics, setmetrics] = useState({}as IMetrics)
+    const [metrics, setmetrics] = useState({}as IIncidentesMetrics)
     const [SearchLaudo, setSearchLaudo] = useState({})
 
     const auth = useAuth()
@@ -106,10 +111,10 @@ export default function Dashboard() {
         let getDossie = `&dossie=${dossie}`
 
         try {
-            const response = await api.get(`/laudo_benner/?${dossie ? getDossie : ''}`)
-            setLaudos(response.data.laudos)
+            const response = await api.get(`/incidentes/?robo_id=${robo_id}${dossie ? getDossie : ''}&sort=concluido`)
+            setLaudos(response.data.incidentes)
             settotalLaudos(response.data.total)
-            const metrics = await api.get(`/laudo_benner/metrics`)
+            const metrics = await api.get(`/incidentes/metrics`)
             setmetrics(metrics.data)
 
         } catch (error) {
@@ -119,18 +124,18 @@ export default function Dashboard() {
     }
 
     async function searchDossie(dossie:string) {
-        getRoboData('',dossie)
+        getRoboData('88271',dossie)
     }
 
     useEffect(() => {
-        getRoboData('','')
+        getRoboData('88271','')
 
     }, [])
 
     return (
 
         <Layout className="site-layout">
-          <Text keyboard>Robô : Laudos de monitoramento - Benner para CPJ </Text>
+          <Text keyboard>Robô : Cadastro de Incidentes - CPJ </Text>
                     
           <Content
             className="site-layout-background"
@@ -142,69 +147,42 @@ export default function Dashboard() {
             }}>
                
                     <CardWrapper>
-                    
+
                     <CardStatistic
-                    title='Total salvo no banco'
-                    value={metrics?.totalGeral || 0}
-                    suffix='Processos'
-                    color='black'
+                    title='Total cadastrado no CPJ'
+                    value={4650}
+                    suffix='Cadastrados'
+                    icon={<VerticalAlignTopOutlined />}
+                    color='green'
+                    precision={0}
+                    />
+
+                    <CardStatistic
+                    title='Total não concluido'
+                    value={230}
+                    suffix='Não cadastrados'
+                    color='red'
                     precision={0}
                     icon={<DatabaseOutlined />}
   
                     />
 
 
-
-                    <CardStatistic
-                    title='Laudos inseridos no CPJ'
-                    value={metrics?.totalUploadTrue || 0}
-                    suffix='Inseridos no CPJ'
-                    icon={<VerticalAlignTopOutlined />}
-                    color='green'
-                    precision={0}
-                    />
-
-
-                    <CardStatistic
+                    {/* <CardStatistic
                     title='Laudos baixados no Benner'
-                    value={metrics?.baixadoBennerSucesso || 0}
+                    value={metrics?.totalErroCadastroTrue || 0}
                     suffix='Downloads'
                     icon={<DownloadOutlined />}
                     color='green'
                     precision={0}
-                    />           
+                    />            */}
 
-                    <CardStatistic
-                    title='Aguardando processamento'
-                    value={metrics?.totalUploadFalse || 0}
-                    suffix='Processos na fila'
-                    icon={<HourglassOutlined />}
-                    color='blue'
-                    precision={0}
-                    />
-                    
-                    <CardStatistic
-                    title='Falhas durante o processamento'
-                    value={metrics?.erroUploadTrue || 0}
-                    suffix='Falhas'
-                    icon={<BugOutlined />}
-                    color='#eb9234'
-                    precision={0}
-                    />
-{/* 
-                    <CardStatistic
-                    title='Erros identificados durante o download'
-                    value={metrics?.baixadoBennerFail || 0}
-                    suffix='Erros'
-                    icon={<VerticalAlignBottomOutlined />}
-                    color='red'
-                    precision={0}
-                    /> */}
+                  
 
-                    <CardStatistic
+                  <CardStatistic
                     title='Tempo de execução robô'
-                    value={(metrics?.horasTrabalho)*0.0166667 || 0}
-                    suffix='Horas trabalhadas'
+                    value={1170}
+                    suffix='Horas'
                     icon={<ClockCircleOutlined />}
                     color='#38614c'
                     precision={0}
@@ -213,7 +191,7 @@ export default function Dashboard() {
                     <CardStatistic
                     title='Economia de mão de obra'
                     suffix='Reais'
-                    value={((metrics?.horasTrabalho)*0.0166667)*12.5 || 0}
+                    value={(1170*0.0166667)*192.5 || 0}
                     icon={<DollarCircleOutlined />}
                     color='#38614c'
                     precision={2}

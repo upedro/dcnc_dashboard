@@ -6,6 +6,7 @@ import { useAuth } from '../../auth/useAuth'
 import './index.css'
 import { Container } from './style'
 import Incidentes from '../Incidentes'
+import Fake1 from '../Fake1'
 
 export default function Home() {
 
@@ -24,8 +25,8 @@ export default function Home() {
             <CapsuleTabs.Tab className='tabs' title='Robô: Incidentes' key='vegetables'>
               <Incidentes/>
             </CapsuleTabs.Tab>
-            <CapsuleTabs.Tab className='tabs' title='Robô vazio' key='animals'>
-              Aguardando Robô
+            <CapsuleTabs.Tab className='tabs' title='Robô de cadastro Santander' key='animals'>
+              <Fake1/>
             </CapsuleTabs.Tab>
             <CapsuleTabs.Tab className='tabs' title='Robô vazio' key='animals2'>
               Aguardando Robô
